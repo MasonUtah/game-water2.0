@@ -5,7 +5,7 @@ const DIFFICULTY_SETTINGS = {
   medium: 1000,
   hard: 700
 };
-
+//code
 let currentCans = 0;         // Current number of items collected
 let gameActive = false;      // Tracks if game is currently running
 let spawnInterval;           // Holds the interval for spawning items
