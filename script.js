@@ -65,8 +65,19 @@ function handleCellClick(event) {
   if (hasCan) {
     currentCans += 1;
     updateScoreDisplay();
-    cell.innerHTML = '';
-    cell.dataset.hasCan = 'false';
+    
+    // Play sound effect
+    const audio = new Audio('ES_Water, Drip, Large Water Drip - Epidemic Sound.mp3');
+    audio.play().catch(err => console.log('Audio play failed:', err));
+    
+    // Add disappearing animation
+    hasCan.classList.add('disappearing');
+    
+    // Clear cell after animation completes
+    setTimeout(() => {
+      cell.innerHTML = '';
+      cell.dataset.hasCan = 'false';
+    }, 400);
   }
 }
 
@@ -147,12 +158,36 @@ function endGame() {
   clearGrid();
   setResetButtonState();
 
+  let message = '';
   if (currentCans >= GOAL_CANS) {
     achievementDisplay.textContent = 'You win! You collected enough water cans!';
+    message = `🎉 Congratulations! 🎉<br><br>You collected <strong>${currentCans}</strong> water cans and completed Water Quest!`;
   } else {
     achievementDisplay.textContent = 'Time is up! Try again and collect more water cans.';
+    message = `Good effort!<br><br>You collected <strong>${currentCans} out of ${GOAL_CANS}</strong> water cans. Try again to reach the goal!`;
   }
+
+  // Show completion modal
+  const modal = document.getElementById('completion-modal');
+  const modalMessage = document.getElementById('modal-message');
+  modalMessage.innerHTML = message;
+  modal.style.display = 'flex';
 }
+
+// Close modal when clicking outside of it
+function setupModalHandlers() {
+  const modal = document.getElementById('completion-modal');
+  const modalContent = document.querySelector('.modal-content');
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+}
+
+// Initialize modal handlers
+setupModalHandlers();
 
 // Set up click handler for the start button
 document.getElementById('start-game').addEventListener('click', startGame);

@@ -8,12 +8,15 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <div class="container py-4 py-md-5">
+  <header class="site-header">
+    <div class="container d-flex align-items-center justify-content-between h-100">
+      <img src="cw_horizontal_white.jpg" alt="charity: water logo" class="header-logo">
+    </div>
+  </header>
+
+  <div class="game-container">
     <div class="card shadow-sm border-0 rounded-4 mx-auto" style="max-width: 760px;">
       <div class="card-body p-4 p-md-5">
-        <div class="d-flex justify-content-start justify-content-md-start mb-3">
-          <img src="cw_horizontal_white.jpg" alt="charity: water logo" class="header-logo">
-        </div>
         <h1 class="display-6 fw-bold text-center mb-3">Water Quest</h1>
         <p class="game-instructions text-center mb-4">Collect 20 items to complete the game!</p>
 
@@ -40,6 +43,20 @@
       </div>
     </div>
   </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-text">Bringing clean water and sanitation to people in need.</p>
+    </div>
+  </footer>
+
+  <div id="completion-modal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <div id="modal-message" class="modal-message"></div>
+      <a id="charity-water-btn" href="https://www.charitywater.org/" target="_blank" class="btn btn-success btn-lg px-4 mt-3">Visit charity: water</a>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
